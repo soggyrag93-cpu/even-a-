@@ -16,9 +16,13 @@ const App = () => {
 
   // Load favorites from local storage
   useEffect(() => {
-    const saved = localStorage.getItem('nova-favorites');
-    if (saved) {
-      setFavorites(JSON.parse(saved));
+    try {
+      const saved = localStorage.getItem('nova-favorites');
+      if (saved) {
+        setFavorites(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.warn("Failed to load favorites from localStorage", e);
     }
   }, []);
 
